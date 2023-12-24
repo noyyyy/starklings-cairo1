@@ -2,14 +2,13 @@
 // but take_order functions are not being called correctly.
 // Can you fix this?
 
-// I AM NOT DONE
-
 mod restaurant {
     fn take_order() -> felt252 {
         'order_taken'
     }
 }
 
+use restaurant::take_order;
 #[test]
 fn test_mod_fn() {
     // Fix this line to call take_order function from module
@@ -20,6 +19,7 @@ fn test_mod_fn() {
 
 #[cfg(test)]
 mod tests {
+    use super::take_order;
     #[test]
     fn test_super_fn() {
         // Fix this line to call take_order function

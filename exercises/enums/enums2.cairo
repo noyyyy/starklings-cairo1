@@ -1,14 +1,19 @@
 // enums2.cairo
 // Execute `starklings hint enums2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 use debug::PrintTrait;
 use array::ArrayTrait;
 use traits::Into;
 
+
+
 #[derive(Copy, Drop)]
 enum Message { // TODO: define the different variants used below
+    Quit,
+    Echo: felt252,
+    Move: (felt252, felt252),
+    ChangeColor: (felt252, felt252, felt252)
 }
 
 
@@ -35,20 +40,20 @@ impl MessageImpl of MessageTrait<Message> {
 }
 
 fn print_messages_recursive(messages: Array<Message>, index: u32) {
-    match gas::withdraw_gas() {
-        Option::Some(_) => {},
-        Option::None => {
-            let mut data = ArrayTrait::<felt252>::new();
-            data.append('OOG');
-            panic(data);
-        },
-    }
-    if index >= messages.len() {
-        return ();
-    }
-    let message = *messages.at(index);
-    message.call();
-    print_messages_recursive(messages, index + 1)
+    // match gas::withdraw_gas() {
+    //     Option::Some(_) => {},
+    //     Option::None => {
+    //         let mut data = ArrayTrait::<felt252>::new();
+    //         data.append('OOG');
+    //         panic(data);
+    //     },
+    // }
+    // if index >= messages.len() {
+    //     return ();
+    // }
+    // let message = *messages.at(index);
+    // message.call();
+    // print_messages_recursive(messages, index + 1)
 }
 
 

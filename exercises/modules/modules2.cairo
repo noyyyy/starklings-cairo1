@@ -1,4 +1,3 @@
-// I AM NOT DONE
 // These modules have some issues, can you fix?
 // Run `starklings hint modules2` or `hint` watch command for a hint.
 
@@ -6,6 +5,7 @@ use debug::PrintTrait;
 const YEAR: u16 = 2050;
 
 mod order {
+    use super::YEAR;
     #[derive(Copy, Drop)]
     struct Order {
         name: felt252,
@@ -16,11 +16,16 @@ mod order {
     }
 
     fn new_order(name: felt252, made_by_phone: bool, item: felt252) -> Order {
-        Order { name, year: YEAR, made_by_phone, made_by_email: !made_by_phone, item,  }
+        Order { name, year: YEAR, made_by_phone, made_by_email: !made_by_phone, item, }
     }
 }
 
+use order::Order;
+use order::new_order;
 mod order_utils {
+    use super::Order;
+    use super::new_order;
+
     fn dummy_phoned_order(name: felt252) -> Order {
         new_order(name, true, 'item_a')
     }
